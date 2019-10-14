@@ -5,9 +5,8 @@
   "repository": "git@github.com:arnidan/sex_by_russian_name.git",
   "author": "Andrew",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.es5.js",
-  "typings": "dist/types/index.d.ts",
+  "main": "dist/SexByRussianName.js",
+  "typings": "types/SexByRussianName.d.ts",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project tsconfig.json src/**/*.ts",

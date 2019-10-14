@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "removeComments": true,
-    "declarationDir": "dist",
+    "declarationDir": "types",
     "outDir": "dist"
   },
   "include": [
