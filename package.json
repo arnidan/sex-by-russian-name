@@ -1,0 +1,25 @@
+{
+  "name": "sex_by_russian_name",
+  "version": "1.0.0",
+  "description": "Detect sex by russian name",
+  "repository": "git@github.com:arnidan/sex_by_russian_name.git",
+  "author": "Andrew",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es5.js",
+  "typings": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.12",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.6.4"
+  }
+}
