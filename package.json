@@ -12,8 +12,11 @@
     "lint": "tslint --project tsconfig.json src/**/*.ts",
     "test": "jest",
     "test-coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "publish": "publish-please",
-    "prepublish": "npm run test && npm run build"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
