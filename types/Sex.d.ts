@@ -1,4 +1,4 @@
-export declare enum Gender {
+export declare enum Sex {
     FEMALE = "female",
     MALE = "male"
 }

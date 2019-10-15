@@ -1,4 +1,4 @@
-export declare const lastNameCompletions: {
+export declare const patronymicEndings: {
     female: string[];
     male: string[];
 };
