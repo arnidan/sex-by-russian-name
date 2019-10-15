@@ -9,7 +9,7 @@ type Name = {
   firstName?: string,
   lastName?: string,
   patronymic?: string,
-}
+};
 
 export class SexByRussianName {
 

@@ -3,6 +3,16 @@
 [![Build Status](https://travis-ci.com/arnidan/sex-by-russian-name.svg?branch=master)](https://travis-ci.com/arnidan/sex-by-russian-name)
 [![Coverage Status](https://coveralls.io/repos/github/arnidan/sex-by-russian-name/badge.svg?branch=master)](https://coveralls.io/github/arnidan/sex-by-russian-name?branch=master)
 
+## Installation
+
+```bash
+npm install sex-by-russian-name
+```
+
+```
+yarn add sex-by-russian-name
+```
+
 ## Example
 
 ```js
