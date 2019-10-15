@@ -13,9 +13,11 @@ npm install sex-by-russian-name
 yarn add sex-by-russian-name
 ```
 
-## Example
+## Typescript Example
 
-```js
+```typescript
+import {SexByRussianName} from 'sex-by-russian-name';
+
 const instance = new SexByRussianName();
 
 instance.getSex({firstName: 'Иван', lastName: 'Иванов', patronymic: 'Иванович'});
