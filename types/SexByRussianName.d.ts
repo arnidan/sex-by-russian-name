@@ -6,16 +6,14 @@ declare enum NameType {
 }
 declare type GenderResult = Gender | undefined;
 export declare class SexByRussianName {
-    protected readonly lastName?: string;
-    protected readonly firstName?: string;
-    protected readonly patronymic?: string;
-    constructor(lastName?: string, firstName?: string, patronymic?: string);
-    getGender(): GenderResult;
+    getGender(firstName?: string, lastName?: string, patronymic?: string): GenderResult;
     protected determineGender(genders: GenderResult[]): GenderResult;
-    protected genderByFirstName(): GenderResult;
-    protected genderBy(nameType: NameType, name: string): GenderResult;
+    protected genderByFirstName(firstName: string): GenderResult;
+    protected genderByLastName(lastName: string): GenderResult;
+    protected genderByPatronymic(patronymic: string): GenderResult;
     protected isCorrect(string: string, type: NameType, gender: Gender): boolean;
-    protected isPopularName(gender: Gender): boolean;
+    protected isPopularName(firstName: string, gender: Gender): boolean;
+    protected isEndingEqualsWithCompletions(string: string, completions: string[]): boolean;
     protected getEndOfWord(string: string, count: number): string;
     protected normalize(string: string): string;
 }

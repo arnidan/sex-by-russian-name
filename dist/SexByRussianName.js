@@ -11,31 +11,22 @@ var NameType;
     NameType[NameType["FIRST_NAME"] = 2] = "FIRST_NAME";
 })(NameType || (NameType = {}));
 var SexByRussianName = (function () {
-    function SexByRussianName(lastName, firstName, patronymic) {
+    function SexByRussianName() {
+    }
+    SexByRussianName.prototype.getGender = function (firstName, lastName, patronymic) {
+        var results = [];
         if (lastName) {
-            this.lastName = this.normalize(lastName);
+            results.push(this.genderByLastName(lastName));
         }
         if (firstName) {
-            this.firstName = this.normalize(firstName);
+            results.push(this.genderByFirstName(firstName));
         }
         if (patronymic) {
-            this.patronymic = this.normalize(patronymic);
-        }
-    }
-    SexByRussianName.prototype.getGender = function () {
-        var results = [];
-        if (this.lastName) {
-            results.push(this.genderBy(NameType.LAST_NAME, this.lastName));
-        }
-        if (this.firstName) {
-            results.push(this.genderByFirstName());
-        }
-        if (this.patronymic) {
-            results.push(this.genderBy(NameType.PATRONYMIC, this.patronymic));
+            results.push(this.genderByPatronymic(patronymic));
         }
         return this.determineGender(results);
     };
-    SexByRussianName.prototype.determineGender = function (genders) {
+    SexByRussianName.prototype.determineSex = function (genders) {
         var male = false;
         var female = false;
         for (var _i = 0, genders_1 = genders; _i < genders_1.length; _i++) {
@@ -54,20 +45,28 @@ var SexByRussianName = (function () {
             return Gender_1.Gender.FEMALE;
         }
     };
-    SexByRussianName.prototype.genderByFirstName = function () {
-        if (this.isPopularName(Gender_1.Gender.FEMALE)) {
+    SexByRussianName.prototype.sexByFirstName = function (firstName) {
+        if (this.isPopularName(firstName, Gender_1.Gender.FEMALE)) {
             return Gender_1.Gender.FEMALE;
         }
-        if (this.isPopularName(Gender_1.Gender.MALE)) {
+        if (this.isPopularName(firstName, Gender_1.Gender.MALE)) {
             return Gender_1.Gender.MALE;
         }
     };
-    SexByRussianName.prototype.genderBy = function (nameType, name) {
-        if (this.isCorrect(name, nameType, Gender_1.Gender.FEMALE)) {
-            return Gender_1.Gender.FEMALE;
+    SexByRussianName.prototype.sexByLastName = function (lastName) {
+        for (var gender in lastNameCompletions_1.lastNameCompletions) {
+            var completions = lastNameCompletions_1.lastNameCompletions[gender];
+            if (this.isEndingEqualsWithCompletions(lastName, completions)) {
+                return gender;
+            }
         }
-        if (this.isCorrect(name, nameType, Gender_1.Gender.MALE)) {
-            return Gender_1.Gender.MALE;
+    };
+    SexByRussianName.prototype.sexByPatronymic = function (patronymic) {
+        for (var gender in patronymicCompletions_1.patronymicCompletions) {
+            var completions = patronymicCompletions_1.patronymicCompletions[gender];
+            if (this.isEndingEqualsWithCompletions(patronymic, completions)) {
+                return gender;
+            }
         }
     };
     SexByRussianName.prototype.isCorrect = function (string, type, gender) {
@@ -91,11 +90,21 @@ var SexByRussianName = (function () {
         }
         return false;
     };
-    SexByRussianName.prototype.isPopularName = function (gender) {
+    SexByRussianName.prototype.isPopularName = function (firstName, gender) {
         var genderNames = names_1.names[gender];
         for (var _i = 0, genderNames_1 = genderNames; _i < genderNames_1.length; _i++) {
             var name_1 = genderNames_1[_i];
-            if (this.firstName === name_1) {
+            if (firstName === name_1) {
+                return true;
+            }
+        }
+        return false;
+    };
+    SexByRussianName.prototype.isEndingEqualsWithCompletions = function (string, completions) {
+        for (var _i = 0, completions_2 = completions; _i < completions_2.length; _i++) {
+            var completion = completions_2[_i];
+            var nameCompletion = this.getEndOfWord(string, completion.length);
+            if (nameCompletion === completion) {
                 return true;
             }
         }

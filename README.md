@@ -1,105 +1,26 @@
-Javascript-библиотека для определения пола по фамилии, имени, отчеству на русском языке
-=======================================================================================
+# Library to detect sex by russian first name, last name and patronymic
 
-[Демо](http://vadimiztveri.github.io/)
+[![Build Status](https://travis-ci.com/arnidan/sex-by-russian-name.svg?branch=master)](https://travis-ci.com/arnidan/sex-by-russian-name)
 
-
-Пример
-------
-
-Подключите скрипт:
-
-```html
-<script src="sex_by_russian_name.js"></script>
-```
-
-Пример инициализации и получения результата:
+## Example
 
 ```js
-var sex_by_russian_name = new SexByRussianName("Иванов", "Иван", "Иванович");
-sex_by_russian_name.get_gender(); // 1 — мужской, 0 — женский, undefined — не определен.
+const instance = new SexByRussianName();
+
+instance.getSex({firstName: 'Иван', lastName: 'Иванов', patronymic: 'Иванович'});
+// male
+instance.getSex({firstName: 'Екатерина', lastName: 'Смирнова'});
+// female
+instance.getSex({});
+// undefined
 ```
 
-Пример HTML-кода:
+## Algorithm
 
-```html
-<form>
-  <p>
-    <label for="surname">Фамилия:</label><br/>
-    <input id="surname" type="text" onBlur="sexing()" />
-  </p>
+More information about algorithm you can find in original library [README](https://github.com/vadimiztveri/sex_by_russian_name/blob/master/README.md#%D0%BA%D0%B0%D0%BA-%D1%8D%D1%82%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82) or [wiki](https://github.com/vadimiztveri/sex_by_russian_name/wiki)
 
-  <p>
-    <label for="first_name">Имя:</label><br/>
-    <input id="first_name" type="text" onBlur="sexing()" />
-  </p>
+## Thanks to
 
-  <p>
-    <label for="patronymic">Отчество:</label><br/>
-    <input id="patronymic" type="text" onBlur="sexing()" />
-  </p>
-
-  <p>
-    <label for="result">Пол:</label><br/>
-    <input id="male" name="sex" type="radio" onclick="manual_sex_choice()" /> мужской
-    <input id="female" name="sex" type="radio" onclick="manual_sex_choice()" /> женский
-  <p>
-</form>
-
-<script src="sex_by_russian_name.js"></script>
-
-<script>
-  var is_manual_sex_choice = false;
-
-  var manual_sex_choice = function() {
-    is_manual_sex_choice = true;
-  }
-
-  var sexing = function () {
-    if (!is_manual_sex_choice) {
-      var surname = document.getElementById('surname').value,
-          first_name = document.getElementById('first_name').value,
-          patronymic = document.getElementById('patronymic').value,
-          sex_by_russian_name = new SexByRussianName(surname, first_name, patronymic),
-          gender = sex_by_russian_name.get_gender();
-
-      switch(gender){
-        case 0:
-          document.getElementById('female').checked = true;
-          break;
-        case 1:
-          document.getElementById('male').checked = true;
-          break;
-        default:
-          document.getElementById('male').checked = false;
-          document.getElementById('female').checked = false;
-      }
-    }
-  }
-</script>
-```
-
-Как это работает
-----------------
-
-Скрипт сначала определяет пол у каждой части имени отдельно, а потом, исходя из полученных данных, возвращает результат.
-
-[О способах определения пола в каждой части имени](https://github.com/vadimiztveri/sex_by_russian_name/wiki/Определение-пола-по-частям-имени)
-
-[О логике итогового определения пола, после получения результатов из частей имени](https://github.com/vadimiztveri/sex_by_russian_name/wiki/Логика-отпределения-пола)
-
-
-Лицензия
---------
-
-sex_by_russian_name является бесплатным ПО, подробности в файле LICENSE.
-
-
-Авторы
-------
-
-Автор: [Вадим Галкин](https://github.com/vadimiztveri/)
-
-Благодарность:
+* [Вадим Галкин](https://github.com/vadimiztveri/) – Author of [original library](https://github.com/vadimiztveri/sex_by_russian_name)
 * [Александр Борисов](https://github.com/aishek)
 * [Кирилл Храпков](https://github.com/cubbiu)
