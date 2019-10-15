@@ -1,6 +1,7 @@
 # Library to detect sex by russian first name, last name and patronymic
 
 [![Build Status](https://travis-ci.com/arnidan/sex-by-russian-name.svg?branch=master)](https://travis-ci.com/arnidan/sex-by-russian-name)
+[![Coverage Status](https://coveralls.io/repos/github/arnidan/sex-by-russian-name/badge.svg?branch=master)](https://coveralls.io/github/arnidan/sex-by-russian-name?branch=master)
 
 ## Example
 
