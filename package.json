@@ -10,11 +10,13 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project tsconfig.json src/**/*.ts",
-    "test": "jest"
+    "test": "jest",
+    "test-coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.12",
+    "coveralls": "^3.0.7",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
