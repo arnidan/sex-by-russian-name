@@ -1,6 +1,6 @@
 {
   "name": "sex-by-russian-name",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Detect sex by russian name",
   "repository": "git@github.com:arnidan/sex_by_russian_name.git",
   "author": "Andrew",
