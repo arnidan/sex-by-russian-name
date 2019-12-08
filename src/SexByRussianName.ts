@@ -62,10 +62,8 @@ export class SexByRussianName {
 
   protected sexByFirstName(firstName: string): SexResult {
     for (const sex in names) {
-      for (const name of names[sex as Sex]) {
-        if (firstName === name) {
-          return sex as Sex;
-        }
+      if (names[sex as Sex].has(firstName)) {
+        return sex as Sex;
       }
     }
   }
